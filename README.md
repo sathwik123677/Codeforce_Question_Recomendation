@@ -1,96 +1,102 @@
-## 🚀 Live Demo
-🔗 **https://code-forces-problem-recommender-two.vercel.app/**  
-# Codeforces Question Recommender — Frontend
-
-A clean, frontend-only (HTML/CSS/JS) UI that calls a Hugging Face Space (Gradio) to generate personalized Codeforces problem recommendations. No server or build step required — just open locally or host as a static site.
-
-## ✨ Features
-
-- Personalized recommendations by Codeforces handle
-- Optional topic filters (graphs, DP, math, etc.)
-- Pure static assets (HTML/CSS/JS)
-
-## 🧱 Tech Stack
-
-- Vanilla HTML/CSS/JS
-- [`@gradio/client`](https://www.npmjs.com/package/@gradio/client) (CDN) to call  Space from the browser
-- [`marked.js`](https://github.com/markedjs/marked) to render Markdown returned by the Space
-
-## 📁 Structure
-
+# 🚀 CF Question Recommendation
+A modern React-based web application that provides personalized Codeforces problem recommendations based on a user's profile.
+The frontend communicates with a Python backend hosted on Hugging Face Spaces and presents recommendations through a clean, responsive interface with Dark and Light themes.
+## 🌐 Live Demo 
+https://codeforce-question-recomendation.vercel.app/
+---
+# ✨ Features
+- 🎯 Personalized Codeforces problem recommendations
+- 👤 Codeforces profile analysis
+- 📚 Topic-based recommendations
+- 🌙 Dark / ☀️ Light mode
+- 📱 Fully responsive UI
+- ⚡ Fast React + Vite application
+---
+# 🛠 Tech Stack
+## Frontend
+- React
+- Vite
+- JavaScript
+- Tailwind CSS v4
+- Axios
+- Framer Motion
+- Lucide React
+## Backend
+- Python
+- Codeforces API
+- Hugging Face Spaces
+---
+# 📁 Project Structure
+```text
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── RecommendationForm.jsx
+│   │   ├── Result.jsx
+│   │   ├── Loader.jsx
+│   │   ├── ThemeToggle.jsx
+│   │   └── Footer.jsx
+│   ├── services/
+│   │   └── api.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── .env
+├── package.json
+├── vite.config.js
+└── README.md
 ```
-/
-├─ index.html    # UI (layout + styles) + script tags
-├─ app.js        # Frontend logic and Space API calls
-└─ vendor/       # (optional) self-hosted @gradio/client bundle
+---
+# 🚀 Quick Start
+## 1. Clone the Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 ```
+## 2. Navigate to the Project
+```bash
+cd YOUR_REPOSITORY
+```
+## 3. Install Dependencies
+```bash
+npm install
+```
+## 4. Create a `.env` File
+```env
+VITE_BACKEND_URL=https://your-huggingface-space.hf.space
+```
+## 5. Start the Development Server
+```bash
+npm run dev
+```
+---
+# 🏗 Build for Production
+```bash
+npm run build
+```
+Preview the production build:
 
-## 🚀 Quick Start
+```bash
+npm run preview
+```
+---
+# 🌐 Backend
+The frontend communicates with a Python backend deployed on Hugging Face Spaces.
 
-1. Set your Space handle in `app.js`:
-	```js
-	// app.js
-	const SPACE = "/CF_Problem_Recommender";
-	const ENDPOINT = "/recommend";
-	```
-	Prefer a named endpoint in your Space (`api_name="recommend"` on the Gradio click handler).  
-	If not named, set `ENDPOINT` to the actual route your Space exposes (e.g., `/handle_recommendation`).
+The backend is responsible for:
 
-2. Serve statically (so ES module imports load):
-	```sh
-	npx serve .
-	# or
-	python3 -m http.server 8080
-	```
-	Open the printed URL (e.g., http://localhost:3000/).
+- Fetching Codeforces profile
+- Analyzing solved problems
+- Generating personalized recommendations
+- Returning profile analysis
+- Returning recommended problems
+---
+# 👨‍💻 Author
 
-3. Use it:
-	- Enter a Codeforces username
-	- (Optionally) pick topics
-	- Click **Get Personalized Recommendations**
-
-## ⚙️ Configuration
-
-- **Space target:**  
-  Handle form (default in `app.js`):
-  ```js
-  const SPACE = "/CF_Problem_Recommender";
-  ```
-  Full URL form (works the same):
-  ```js
-  const SPACE = "https://cf-problem-recommender.hf.space/";
-  ```
-
-- **Topics:**  
-  Defined in `app.js` (`COMMON_TOPICS`) and rendered as checkboxes.
-
-- **CDN-free option (optional):**
-	```sh
-	npm i @gradio/client@0.16.1
-	mkdir -p vendor
-	cp node_modules/@gradio/client/dist/index.min.js vendor/gradio-client.js
-	```
-	Then in `app.js`:
-	```js
-	import { Client } from "./vendor/gradio-client.js";
-	```
-
-## 🧩 How It Works
-
-- On load, `app.js` connects to your Space:
-	```js
-	import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
-	const app = await Client.connect(SPACE);
-	```
-- On submit:
-	```js
-	const res = await app.predict("/recommend", [username, topics, numProblems]);
-	```
-- The UI renders:
-	- Profile (Markdown → HTML via marked)
-	- Recommendations (HTML returned by the Space)
-
-## 🙏 Credits
-
-- Hugging Face Spaces & Gradio
-- Codeforces community & API (consumed by your Space backend)
+**Sathwik Pathivada**
+GitHub: https://github.com/sathwik123677
+---
+# 📄 License
+This project is licensed under the MIT License.
