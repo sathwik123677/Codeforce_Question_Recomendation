@@ -64,7 +64,7 @@ export default function RecommendationForm({ onSubmit, loading }) {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your handle (e.g., tourist, jiangly)"
+              placeholder="Enter your handle (e.g., tourist, jiangly,sathwikp06,..)"
               className="w-full pl-4 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border border-light-border dark:border-dark-border focus:border-brand-purple dark:focus:border-brand-purple focus:outline-none rounded-xl text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200"
               disabled={loading}
             />
